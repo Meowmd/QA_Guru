@@ -2,6 +2,7 @@ package tests.demoqa;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import tests.demoqa.TestBase;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -9,6 +10,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 public class RegistrationFormTests extends TestBase {
+
     @Test
     @DisplayName("Successful fill form")
     void successfulTest() {
@@ -34,7 +36,7 @@ public class RegistrationFormTests extends TestBase {
             $("#subjectsInput").sendKeys("Maths");
             $("#subjectsInput").pressEnter();
             $("#hobbiesWrapper").$(byText("Sports")).click();
-            $("#uploadPicture").uploadFromClasspath("img/test.png");
+            $("#uploadPicture").uploadFromClasspath("test.png");
             $("#currentAddress").setValue("Some street 1");
             $("#state").click();
             $("#stateCity-wrapper").$(byText("NCR")).click();
