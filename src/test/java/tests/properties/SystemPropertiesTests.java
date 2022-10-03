@@ -1,6 +1,5 @@
 package tests.properties;
 
-
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +20,5 @@ public class SystemPropertiesTests {
         System.out.println(browser);
         System.out.println(browserVersion);
         System.out.println(browserSize);
-
     }
 }
