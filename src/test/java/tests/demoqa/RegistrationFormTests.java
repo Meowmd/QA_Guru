@@ -11,7 +11,7 @@ import static io.qameta.allure.Allure.step;
 public class RegistrationFormTests extends TestBase {
     @Test
     @DisplayName("Successful fill form")
-    void successfulTest() {
+     void successfulTest() {
         String firstName = "Alex";
         String lastName = "Egorov";
 
