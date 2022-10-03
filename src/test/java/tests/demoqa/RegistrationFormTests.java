@@ -34,7 +34,7 @@ public class RegistrationFormTests extends TestBase {
             $("#subjectsInput").sendKeys("Maths");
             $("#subjectsInput").pressEnter();
             $("#hobbiesWrapper").$(byText("Sports")).click();
-            $("#uploadPicture").uploadFromClasspath("img/1.png");
+            $("#uploadPicture").uploadFromClasspath("img/test.png");
             $("#currentAddress").setValue("Some street 1");
             $("#state").click();
             $("#stateCity-wrapper").$(byText("NCR")).click();
