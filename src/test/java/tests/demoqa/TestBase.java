@@ -10,28 +10,29 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class TestBase extends Attach {
-    static CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+public class TestBase {
+
+    RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+    public static CredentialsConfig credentialsConfig = ConfigFactory.create(CredentialsConfig.class);
 
     @BeforeAll
-    static void beforeAll() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
+    static void setUp() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
 
         Configuration.browserCapabilities = capabilities;
-        Configuration.baseUrl = config.baseUrl();
+        Configuration.baseUrl = "https://demoqa.com";
+
         Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserSize = System.getProperty("version", "100");
+        Configuration.browserVersion = System.getProperty("version", "100");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
-        Configuration.holdBrowserOpen = true;
-        String remoteDriverUrl = System.getProperty("remoteDriverUrl","selenoid.autotests.cloud/wd/hub");
-        Configuration.remote = String.format("https://%s:%s@%s", config.login(), config.password(), remoteDriverUrl);
-
+        String remoteBrowser = System.getProperty("remote", "selenoid.autotests.cloud/wd/hub");
+        Configuration.remote = String.format("https://%s:%s@%s", credentialsConfig.login(), credentialsConfig.password(),
+                remoteBrowser);
     }
-
 
     @AfterEach
     void addAttachments() {
@@ -39,5 +40,8 @@ public class TestBase extends Attach {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+    }
+
+    private class RegistrationFormPage {
     }
 }
